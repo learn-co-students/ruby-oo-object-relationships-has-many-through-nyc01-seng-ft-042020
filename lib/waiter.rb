@@ -1,3 +1,5 @@
+require 'pry'
+
 class Waiter
     attr_accessor :name, :years 
 
@@ -23,9 +25,13 @@ class Waiter
         end
     end
 
-    # def best_tipper
-    #     Meal.all.find do |meal|
-            
-    # end
+    def best_tipper
+        best_tipped_meal = meals.max do |meal_one, meal_two|
+          meal_one.tip <=> meal_two.tip
+        #   binding.pry 
+        end
+        best_tipped_meal.customer
+      end
+
 
 end

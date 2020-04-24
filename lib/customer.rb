@@ -30,5 +30,7 @@ class Customer
             x.waiter 
         end  
     end
+
+
     
 end
