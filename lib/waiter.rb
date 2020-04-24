@@ -1,3 +1,39 @@
 class Waiter
+attr_accessor :name, :years_experience
+
+@@all = []
+
+# ^^ class variable that stores every 
+#`waiter` instance upon initialization.
+
+def initialize 
+@name = name
+@yrs_experience = yrs_experience
+Waiter.all << self
+end
+
+def self.all
+    @@all
+end
+
+def new_meal(customer, total, tip=0)
+Meal.new(self, customer, total, tip)
+end
+
+def meals
+    Meal.all.select do |meal|
+        meal.waiter == self
+        #does the waiter match to the instance 
+        #of waiter im in? 
+    end
+end 
+
+def best_tipper
+    best_tipped_meal = meals.max do |meal_a, meal_b|
+        meal_a.tip <=> meal_b.tip
+    end
+    best_tipped_meal.customer
+end
+
 
 end
